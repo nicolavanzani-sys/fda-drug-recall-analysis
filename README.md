@@ -18,16 +18,27 @@ Key fields: recall classification, reason for recall, recalling firm, recall ini
 Project Structure
 
 fda-drug-recall-analysis/
+
 │
+
 ├── data/
+
 │   ├── 01_fda_data_raw.csv          # Raw data extracted from OpenFDA API
+
 │   └── 02_fda_data_clean.csv        # Cleaned dataset ready for analysis
+
 │
+
 ├── notebooks/
+
 │   ├── 01_data_collection.ipynb     # API extraction and raw data export
+
 │   ├── 02_data_cleaning.ipynb       # Data cleaning and feature engineering
+
 │   └── 03_eda.ipynb                 # Exploratory Data Analysis (4 KPIs)
+
 │
+
 └── README.md
 
 
