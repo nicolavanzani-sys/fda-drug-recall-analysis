@@ -1,4 +1,4 @@
-FDA Drug Recall Analysis
+# FDA Drug Recall Analysis
 
 Analysis of the FDA drug enforcement recall database to identify the primary causes of pharmaceutical recalls and evaluate the efficiency of both industry and regulatory bodies in initiating and managing recall processes.
 
@@ -38,6 +38,12 @@ fda-drug-recall-analysis/
 │   └── 03_eda.ipynb                 # Exploratory Data Analysis (4 KPIs)
 
 │
+
+├── fda_recall_sql/
+
+│   ├── 02_fda_data_clean.csv        # Cleaned dataset ready for analysis
+
+│   ├── fda_drug_recall.sql         # Exploratory Data Analysis in PostgreSQL (4 KPIs)
 
 └── README.md
 
@@ -80,10 +86,6 @@ Run the notebooks in order:
 03_eda.ipynb — runs the full exploratory analysis across 4 KPIs
 
 
-
-
-
-
 Methodological Notes
 
 
@@ -91,6 +93,26 @@ Recall categorization uses a single-hierarchy keyword approach on reason_for_rec
 Firm classification (compounding vs manufacturer) is keyword-based and may misclassify firms with non-descriptive names (e.g. Pharmedium Services LLC).
 Three firms excluded from Top Recalling Firms analysis (King Bio Inc., Attix Pharmaceuticals, Aidapak Services LLC) due to recall volumes dominated by single mass-recall events rather than recurring manufacturing issues.
 Records with classification time > 365 days excluded from KPI 2 analysis (1.4% of dataset).
+
+
+## SQL Analysis
+
+Four analytical queries written in PostgreSQL are available in the `fda_recall_sql/` folder.
+The queries replicate and extend the Python EDA analysis, demonstrating consistency 
+between the two approaches.
+
+| Query | Business Question | Key Technique |
+|---|---|---|
+| Top 10 firms by Class I recalls | Which firms have the highest number of the most severe recalls? | CTE, GROUP BY, percentage calculation |
+|---|---|---|
+| Avg classification time by severity | How long does the FDA take to classify a recall by severity class? | CTE, AVG, date arithmetic |
+|---|---|---|
+| Voluntary vs mandated by year | How has the ratio of firm-initiated vs FDA-mandated recalls evolved since FDASIA? | CTE, CASE WHEN, window function SUM() OVER |
+|---|---|---|
+| Recall category ranking by response time | Which recall categories require the longest FDA classification time? | CTE, CASE WHEN, RANK() OVER |
+
+**Setup:** Import `data/02_fda_data_clean.csv` into a PostgreSQL database 
+and run the queries in `fda_recall_sql/fda_drug_recall.sql`.
 
 
 
