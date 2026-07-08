@@ -1,4 +1,4 @@
-# FDA Drug Recall Analysis
+FDA Drug Recall Analysis
 
 Analysis of the FDA drug enforcement recall database to identify the primary causes of pharmaceutical recalls and evaluate the efficiency of both industry and regulatory bodies in initiating and managing recall processes.
 
@@ -95,7 +95,7 @@ Three firms excluded from Top Recalling Firms analysis (King Bio Inc., Attix Pha
 Records with classification time > 365 days excluded from KPI 2 analysis (1.4% of dataset).
 
 
-## SQL Analysis
+SQL Analysis
 
 Four analytical queries written in PostgreSQL are available in the `fda_recall_sql/` folder.
 The queries replicate and extend the Python EDA analysis, demonstrating consistency 
